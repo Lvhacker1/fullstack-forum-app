@@ -1,6 +1,6 @@
-export const routes = {
-  home: '/',
-  login: '/auth/login',
-  register: '/auth/register',
-  callback: '/auth/callback',
+export const ROUTES = {
+  HOME: '/',
+  LOGIN: '/auth/login',
+  REGISTER: '/auth/register',
+  CALLBACK: '/auth/callback',
 }
