@@ -35,6 +35,7 @@ const LoginPage = () => {
           <div>
             <label className="block text-sm font-medium mb-1">{loginText.emailLabel}</label>
             <Input
+              placeholder={loginText.emailPlaceholder}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -43,6 +44,7 @@ const LoginPage = () => {
           <div>
             <label className="block text-sm font-medium mb-1">{loginText.passwordLabel}</label>
             <Input
+              placeholder={loginText.passwordPlaceholder}
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
