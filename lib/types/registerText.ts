@@ -1,6 +1,7 @@
 export interface RegisterPageText {
   title: string
   usernameLabel: string
+  usernamePlaceholder:string
   emailLabel: string
   emailPlaceholder:string
   passwordLabel: string

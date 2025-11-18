@@ -36,6 +36,7 @@ const RegisterPage = () => {
           <div>
             <label className="block text-sm font-medium mb-1">{registerText.usernameLabel}</label>
             <Input
+              placeholder={registerText.usernamePlaceholder}
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -44,6 +45,7 @@ const RegisterPage = () => {
           <div>
             <label className="block text-sm font-medium mb-1">{registerText.emailLabel}</label>
             <Input
+              placeholder={registerText.emailPlaceholder}
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -52,6 +54,7 @@ const RegisterPage = () => {
           <div>
             <label className="block text-sm font-medium mb-1">{registerText.passwordLabel}</label>
             <Input
+              placeholder={registerText.passwordPlaceholder}
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
