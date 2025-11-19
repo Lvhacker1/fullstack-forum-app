@@ -9,6 +9,7 @@ interface CategoryCardProps {
 const CategoryCard = ({ category }: CategoryCardProps) => {
   return (
     <div>
+      <Link href={`/category/${category.slug}`}>
       <h3>{category.name}</h3>
       {category.description && <p>{category.description}</p>}
       {category.topic_count !== undefined && (
@@ -16,8 +17,6 @@ const CategoryCard = ({ category }: CategoryCardProps) => {
             {category.topic_count} {category.topic_count === 1 ? categoryText.topicSingular : categoryText.topicPlural}
         </p>
       )}
-      <Link href={`/category/${category.slug}`}>
-        {categoryText.linkText}
       </Link>
     </div>
   )
