@@ -6,7 +6,7 @@ const CategoryList = ({ categories }: { categories: Category[] }) => {
   if (categories.length === 0) {
     return (
       <div>
-        <p>{categoryText.noCategoriesFound}</p>
+        <h3>{categoryText.noCategoriesFound}</h3>
       </div>
     )
   }
