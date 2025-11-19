@@ -1,7 +1,10 @@
-export default function Home() {
+
+const HomePage = () => {
   return (
     <div>
 
     </div>
   );
 }
+
+export default HomePage;
