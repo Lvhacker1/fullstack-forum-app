@@ -7,4 +7,5 @@ export const homePageText: HomePageText = {
   loginLink: ROUTES.LOGIN,
   registerText: 'Register',
   registerLink: ROUTES.REGISTER,
+  welcomeMessage: 'Welcome back',
 }

@@ -4,4 +4,5 @@ export interface HomePageText {
   loginLink: string
   registerText: string
   registerLink: string
+  welcomeMessage: string
 }
