@@ -52,16 +52,16 @@ const NewTopicPage = ({ params }: NewTopicPageProps) => {
 }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 py-10">
         <div className="max-w-3xl mx-auto px-4">
-            <h1 className="text-3xl font-bold mb-6">{createTopicPageText.heading}</h1>
+            <h1 className="text-3xl font-bold mb-6 text-center">{createTopicPageText.heading}</h1>
             {error && <ErrorMessage message={error} />}
             <form onSubmit={handleSubmit} className="bg-white p-6 rounded-md space-y-4">
                 <div>
                     <label className="block text-sm font-medium mb-1">
                         {createTopicPageText.titleLabel}
                     </label>
-                    <Input
+                    <Input className="p-2 border rounded-md w-full border-gray-400 bg-gray-50 focus:outline-none focus:border-black focus:bg-white transition placeholder-gray-400"
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
