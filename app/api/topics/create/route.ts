@@ -43,7 +43,7 @@ export const POST = async (request: NextRequest) => {
 
     if (existingTopic) {
         return NextResponse.json(
-            { error: 'A topic with this title already exists in this category' },
+            { error: 'Cannot create topic: title already exists.' },
             { status: 400 }
       )
     }
@@ -68,6 +68,6 @@ export const POST = async (request: NextRequest) => {
 
     return NextResponse.json({ data }, { status: 201 })
   } catch (error) {
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return NextResponse.json({ error: 'Internal server error. Please try again later.' }, { status: 500 })
   }
 }
