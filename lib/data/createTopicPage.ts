@@ -1,4 +1,4 @@
-import type { CreateTopicPageText } from '../types/createTopicPage.js'
+import type { CreateTopicPageText } from '../types/createTopicPage'
 
 export const createTopicPageText: CreateTopicPageText = {
     heading: 'Create New Topic',
