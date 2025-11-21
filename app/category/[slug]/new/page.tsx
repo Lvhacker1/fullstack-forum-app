@@ -67,6 +67,11 @@ const NewTopicPage = ({ params }: NewTopicPageProps) => {
     <div className="min-h-screen bg-gray-50 py-10">
         <div className="max-w-3xl mx-auto px-4">
             <h1 className="text-3xl font-bold mb-6 text-center">{createTopicPageText.heading}</h1>
+            {categoryName && (
+                <p className="text-black mb-6">
+                    {createTopicPageText.inCategory} <span className="font-semibold">{categoryName}</span>
+                </p>
+            )}
             {error && <ErrorMessage message={error} />}
             <form onSubmit={handleSubmit} className="bg-white p-6 rounded-md space-y-4">
                 <div>
