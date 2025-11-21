@@ -1,9 +1,15 @@
-import type { CommentText } from '@/lib/types/commentText'
+import type { CommentFormText, CommentListText, CommentSectionText } from '@/lib/types/commentText'
 
-export const commentText: CommentText = {
+export const commentListText: CommentListText = {
     noCommentsYet: 'No comments yet',
-    commentsHeading: 'Comments',
+}
+
+export const commentFormText: CommentFormText = {
     commentPlaceholder: 'Write a comment...',
     submitButton: 'Post Comment',
+}
+
+export const commentSectionText: CommentSectionText = {
+    commentsHeading: 'Comments',
     loginToComment: 'Login to comment',
 }

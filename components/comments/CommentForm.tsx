@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import Textarea from '@/components/common/Textarea'
 import Button from '@/components/common/Button'
 import ErrorMessage from '@/components/common/ErrorMessage'
-import { commentText } from '@/lib/data/commentText'
+import { commentFormText } from '@/lib/data/commentText'
 
 interface CommentFormProps {
     topicId: string
@@ -53,11 +53,11 @@ const CommentForm = ({ topicId }: CommentFormProps) => {
         <Textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        placeholder={commentText.commentPlaceholder}
+        placeholder={commentFormText.commentPlaceholder}
         rows={4}
         required/>
         <Button type="submit" disabled={loading}>
-            {commentText.submitButton}
+            {commentFormText.submitButton}
         </Button>
     </form>
   )
