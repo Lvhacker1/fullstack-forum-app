@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { use } from 'react'
 import { notFound, useRouter } from 'next/navigation'
 import Input from '@/components/common/Input'
@@ -20,6 +20,17 @@ const NewTopicPage = ({ params }: NewTopicPageProps) => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const [categoryName, setCategoryName] = useState('')
+
+    useEffect(() => {
+        const fetchCategory = async () => {
+            const response = await fetch(`/api/categories/${slug}`)
+            if (response.ok) {
+                const data = await response.json()
+                setCategoryName(data.name)
+            }
+        }
+        fetchCategory()
+    }, [slug])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
