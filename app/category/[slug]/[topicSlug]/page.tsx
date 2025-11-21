@@ -54,13 +54,13 @@ const TopicPage = async ({ params }: TopicPageProps) => {
             <section className="bg-white p-8 rounded-lg shadow">
                 <h2 className="text-2xl font-bold mb-6">{commentSectionText.commentsHeading}</h2>
                 {user ? (
-                    <div >
+                    <div className="mb-6">
                         <CommentForm topicId={topic.id}/>
                     </div>
                 ) : (
-                    <div>
-                        <Link href={ROUTES.LOGIN}>
-                        {commentSectionText.loginToComment}
+                    <div className="mb-8 p-4 bg-gray-50 rounded-lg text-center">
+                        <Link href={ROUTES.LOGIN} className="text-blue-600 hover:underline">
+                            {commentSectionText.loginToComment}
                         </Link>
                     </div>
                 )}
