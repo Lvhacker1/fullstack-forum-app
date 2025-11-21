@@ -3,6 +3,9 @@ import getTopicBySlug from '@/lib/actions/topics/getTopicBySlug'
 import getCurrentUser from '@/lib/actions/auth/getCurrentUser'
 import Header from '@/components/layout/Header'
 import { topicPageText } from '@/lib/data/topicPage'
+import getCommentsByTopic from '@/lib/actions/comments/getCommentsByTopic'
+import CommentList from '@/components/comments/CommentList'
+import { commentText } from '@/lib/data/commentText'
 
 interface TopicPageProps {
     params: {
@@ -21,6 +24,8 @@ const TopicPage = async ({ params }: TopicPageProps) => {
     if (!topic) {
         notFound()
     }
+
+    const comments = await getCommentsByTopic(topic.id)
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -43,6 +48,10 @@ const TopicPage = async ({ params }: TopicPageProps) => {
                     className="mt-6 rounded-md max-w-full"/>
                 )}
             </article>
+            <section className="bg-white p-8 rounded-lg shadow">
+                <h2 className="text-2xl font-bold mb-6">{commentText.commentsHeading}</h2>
+                <CommentList comments={comments} />
+            </section>
         </main>
     </div>
   )
