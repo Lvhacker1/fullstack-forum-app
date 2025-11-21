@@ -6,4 +6,5 @@ export const createTopicPageText: CreateTopicPageText = {
     contentLabel: 'Content',
     submitButton: 'Create Topic',
     loading: 'Creating.....',
+    inCategory: 'In'
 }

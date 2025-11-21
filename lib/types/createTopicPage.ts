@@ -4,4 +4,5 @@ export interface CreateTopicPageText {
     contentLabel: string
     submitButton: string
     loading: string
+    inCategory: string
 }
