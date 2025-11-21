@@ -19,6 +19,7 @@ const NewTopicPage = ({ params }: NewTopicPageProps) => {
     const [content, setContent] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const [categoryName, setCategoryName] = useState('')
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
