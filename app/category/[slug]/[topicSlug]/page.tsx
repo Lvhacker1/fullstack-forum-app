@@ -6,6 +6,9 @@ import { topicPageText } from '@/lib/data/topicPage'
 import getCommentsByTopic from '@/lib/actions/comments/getCommentsByTopic'
 import CommentList from '@/components/comments/CommentList'
 import { commentSectionText } from '@/lib/data/commentText'
+import { Link } from 'lucide-react'
+import { ROUTES } from '@/lib/constants/routes'
+import CommentForm from '@/components/comments/CommentForm'
 
 interface TopicPageProps {
     params: {
@@ -50,6 +53,17 @@ const TopicPage = async ({ params }: TopicPageProps) => {
             </article>
             <section className="bg-white p-8 rounded-lg shadow">
                 <h2 className="text-2xl font-bold mb-6">{commentSectionText.commentsHeading}</h2>
+                {user ? (
+                    <div >
+                        <CommentForm topicId={topic.id}/>
+                    </div>
+                ) : (
+                    <div>
+                        <Link href={ROUTES.LOGIN}>
+                        {commentSectionText.loginToComment}
+                        </Link>
+                    </div>
+                )}
                 <CommentList comments={comments} />
             </section>
         </main>
