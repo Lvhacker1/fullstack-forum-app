@@ -20,3 +20,9 @@ export interface TopicWithDetails {
   like_count?: number
   user_has_liked?: boolean
 }
+
+export interface UpdateTopicInput {
+  title?: string
+  content?: string
+  image_url?: string | null
+}
