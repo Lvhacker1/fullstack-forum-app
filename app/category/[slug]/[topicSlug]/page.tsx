@@ -9,6 +9,7 @@ import { commentSectionText } from '@/lib/data/commentText'
 import { Link } from 'lucide-react'
 import { ROUTES } from '@/lib/constants/routes'
 import CommentForm from '@/components/comments/CommentForm'
+import TopicActions from '@/components/topics/TopicAction'
 
 interface TopicPageProps {
     params: {
@@ -29,6 +30,7 @@ const TopicPage = async ({ params }: TopicPageProps) => {
     }
 
     const comments = await getCommentsByTopic(topic.id)
+    const isOwner = user && user.id === topic.user_id
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -36,6 +38,9 @@ const TopicPage = async ({ params }: TopicPageProps) => {
         <main className="max-w-4xl mx-auto px-4 py-8">
             <article className="bg-white p-8 rounded-lg shadow">
                 <h1 className="text-3xl font-bold mb-4">{topic.title}</h1>
+                {isOwner && (
+                    <TopicActions topicId={topic.id} categorySlug={slug} topicSlug={topicSlug}/>
+                )}
                 <div className="flex items-center gap-4 text-sm text-gray-600 mb-6">
                     <span>{topicPageText.byText} {topic.profiles.username}</span>
                     <span>•</span>
