@@ -1,3 +1,4 @@
+import Textarea from "@/components/common/Textarea";
 import { editTopicPageText } from "@/lib/data/editTopicPage";
 import { notFound, useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
@@ -73,7 +74,23 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
 
     return (
         <div>
-
+            <div>
+                <h1></h1>
+                <form>
+                    <div>
+                        <label></label>
+                        <input />
+                    </div>
+                    <div>
+                        <label></label>
+                        <Textarea />
+                    </div>
+                    <div>
+                        <button></button>
+                        <button></button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }
