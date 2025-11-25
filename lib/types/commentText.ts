@@ -11,3 +11,8 @@ export interface CommentSectionText {
     commentsHeading: string
     loginToComment: string
 }
+
+export interface CommentActionsText {
+    deleteButton: string
+    deleteConfirm: string
+}
