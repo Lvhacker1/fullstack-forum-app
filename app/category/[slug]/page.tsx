@@ -5,6 +5,8 @@ import getTopicsByCategory from '@/lib/actions/topics/getTopicsByCategory'
 import getCurrentUser from '@/lib/actions/auth/getCurrentUser'
 import Header from '@/components/layout/Header'
 import { categoryPage } from '@/lib/data/categoryPage' 
+import BackButton from '@/components/common/BackButton'
+import { ROUTES } from '@/lib/constants/routes'
 
 interface CategoryPageProps {
     params: {slug: string}
@@ -28,6 +30,9 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
     <div className="min-h-screen bg-gray-50">
         <Header user={user} />
         <main className="max-w-7xl mx-auto px-4 py-8">
+            <div>
+                <BackButton fallbackUrl={ROUTES.HOME} />
+            </div>
             <div className="flex justify-between items-center mb-6">
                 <div>
                     <h1 className="text-3xl font-bold">{category.name}</h1>
