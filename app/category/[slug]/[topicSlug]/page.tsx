@@ -73,7 +73,7 @@ const TopicPage = async ({ params }: TopicPageProps) => {
                         </Link>
                     </div>
                 )}
-                <CommentList comments={comments} />
+                <CommentList comments={comments} currentUserId={user?.id} categorySlug={slug} topicSlug={topicSlug} />
             </section>
         </main>
     </div>
