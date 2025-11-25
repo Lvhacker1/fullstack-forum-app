@@ -1,11 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import createServerSupabaseClient from '@/lib/supabase/server'
 
-export const PUT = async (
-    request: NextRequest,
-    {params}: 
-    { params: Promise<{id: string }> }
-) => {
+export const PUT = async (request: NextRequest) => {
     try {
         const supabase = await createServerSupabaseClient()
         const { data: { user } } = await supabase.auth.getUser()
@@ -14,9 +10,8 @@ export const PUT = async (
             return NextResponse.json({ error: 'Not authenticated' }, { status: 401 })
         }
 
-        const { id } = await params
         const body = await request.json()
-        const { title, content } = body
+        const { id, title, content } = body
 
         if (!title || !content) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
