@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 
 interface EditTopicPageProps {
@@ -15,6 +15,8 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
     const [topicId, setTopicId] = useState('')
+    const [submitting, setSubmitting] = useState(false)
+    const router = useRouter()
 
     useEffect (() => {
         const fetchTopic = async () => {
@@ -34,6 +36,31 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
         }
         fetchTopic()
     }, [slug, topicSlug])
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setError('')
+        setSubmitting(true)
+
+        try {
+            const response = await fetch(`/api/topics/${topicId}/update`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, content, categorySlug: slug, topicSlug })
+            })
+            
+            const data = await response.json()
+            if (!response.ok) {
+                setError(data.error || 'Failed to update topic')
+                setSubmitting(false)
+                return
+            }
+            router.push(`/category/${slug}/${topicSlug}`)
+        } catch (err) {
+            setError('someyhing went wrong')
+            setSubmitting(false)
+        }
+    }
 
     return (
         <div>
