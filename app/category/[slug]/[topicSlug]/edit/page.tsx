@@ -1,3 +1,6 @@
+import Button from "@/components/common/Button";
+import ErrorMessage from "@/components/common/ErrorMessage";
+import Input from "@/components/common/Input";
 import Textarea from "@/components/common/Textarea";
 import { editTopicPageText } from "@/lib/data/editTopicPage";
 import { notFound, useRouter } from "next/navigation";
@@ -73,21 +76,38 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
     }
 
     return (
-        <div>
-            <div>
-                <h1></h1>
-                <form>
+        <div className="min-h-screen py-8 bg-gray-50">
+            <div className="max-w-3xl mx-auto px-4">
+                <h1 className="text-3xl font-bold mb-6">{editTopicPageText.heading}</h1>
+                {error && <ErrorMessage message={error} />}
+                <form onSubmit={handleSubmit} className="bg-white p-6 rounded-md shadow space-y-4">
                     <div>
-                        <label></label>
-                        <input />
+                        <label className="block text-sm font-medium mb-1">
+                            {editTopicPageText.titleLabel}
+                        </label>
+                        <Input
+                        type="text"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        required/>
                     </div>
                     <div>
-                        <label></label>
-                        <Textarea />
+                        <label className="block text-sm font-medium mb-1">
+                            {editTopicPageText.contentLabel}
+                        </label>
+                        <Textarea
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                        rows={10}
+                        required/>
                     </div>
-                    <div>
-                        <button></button>
-                        <button></button>
+                    <div className="flex gap-2">
+                        <Button type="submit" disabled={submitting}>
+                            {submitting ? editTopicPageText.loading : editTopicPageText.submitButton}
+                        </Button>
+                        <Button type="button" variant="secondary" onClick={() => router.push(`/category/${slug}/${topicSlug}`)}>
+                            {editTopicPageText.cancelButton}
+                        </Button>
                     </div>
                 </form>
             </div>
