@@ -26,7 +26,7 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
     useEffect (() => {
         const fetchTopic = async () => {
             try {
-                const response = await fetch(`/api/category/${slug}/${topicSlug}`)
+                const response = await fetch(`/api/topics/${slug}/${topicSlug}`)
                 if (!response.ok) return notFound()
 
                     const data = await response.json()
@@ -48,7 +48,7 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
         setSubmitting(true)
 
         try {
-            const response = await fetch(`/api/topics/${topicId}/update`, {
+            const response = await fetch(`/api/topics/update`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ title, content, categorySlug: slug, topicSlug })
