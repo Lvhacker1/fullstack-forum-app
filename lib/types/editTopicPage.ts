@@ -4,6 +4,7 @@ export interface EditTopicPageText {
     titleLabel: string
     contentLabel: string
     submitButton: string
-    loading: string
+    saving: string
     cancelButton: string
+    loading: string
 }

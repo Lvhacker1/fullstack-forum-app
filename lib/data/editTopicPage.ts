@@ -5,6 +5,7 @@ export const editTopicPageText: EditTopicPageText = {
     titleLabel: "Title",
     contentLabel: "Content",
     submitButton: "Save Changes",
-    loading: "Saving...",
+    saving: "Saving...",
     cancelButton: "Cancel",
+    loading: "Loading..."
 }

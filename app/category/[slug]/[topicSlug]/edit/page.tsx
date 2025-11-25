@@ -1,3 +1,4 @@
+import { editTopicPageText } from "@/lib/data/editTopicPage";
 import { notFound, useRouter } from "next/navigation";
 import { use, useEffect, useState } from "react";
 
@@ -60,6 +61,14 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
             setError('Something went wrong')
             setSubmitting(false)
         }
+    }
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                <p>{editTopicPageText.loading}</p>
+            </div>
+        )
     }
 
     return (
