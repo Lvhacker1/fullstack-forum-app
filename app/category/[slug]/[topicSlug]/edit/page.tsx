@@ -57,7 +57,7 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
             }
             router.push(`/category/${slug}/${topicSlug}`)
         } catch (err) {
-            setError('someyhing went wrong')
+            setError('Something went wrong')
             setSubmitting(false)
         }
     }
