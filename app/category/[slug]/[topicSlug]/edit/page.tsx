@@ -51,7 +51,7 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
             const response = await fetch(`/api/topics/update`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title, content, categorySlug: slug, topicSlug })
+                body: JSON.stringify({ title, content, id: topicId})
             })
             
             const data = await response.json()
