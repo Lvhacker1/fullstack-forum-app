@@ -5,6 +5,9 @@ import { Menu, X } from 'lucide-react'
 import { headerText } from '@/lib/data/headerText'
 import { ROUTES } from '@/lib/constants/routes'
 import type { AuthUser } from '@/lib/types/auth'
+import { useRouter } from 'next/navigation'
+import logout from '@/lib/actions/auth/logout'
+import Button from '@/components/common/Button'
 
 interface HeaderProps {
   user: AuthUser | null
@@ -12,6 +15,15 @@ interface HeaderProps {
 
 const Header = ({ user }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    await logout()
+    router.push(ROUTES.HOME)
+    router.refresh()
+  }
+
+  
 
   return (
     <header className="bg-white shadow">
@@ -26,7 +38,10 @@ const Header = ({ user }: HeaderProps) => {
           </button>
           <div className="hidden md:flex gap-4">
             {user ? (
-              <p className="text-gray-700">{headerText.welcomeMessage}, {user.username || user.email}</p>
+              <>
+                <p className="text-gray-700">{headerText.welcomeMessage}, {user.username || user.email}</p>
+                <Button variant="danger" onClick={handleLogout}>{headerText.logOutText}</Button>
+              </>
             ) : (
               <>
                 <Link 
@@ -46,7 +61,10 @@ const Header = ({ user }: HeaderProps) => {
         {isOpen && (
           <div className="md:hidden mt-4 flex flex-col gap-2">
             {user ? (
+              <>
               <p className="text-gray-700">{headerText.welcomeMessage}, {user.username || user.email}</p>
+              <Button variant="danger" onClick={handleLogout}>{headerText.logOutText}</Button>
+              </>
             ) : (
               <>
                 <Link 
