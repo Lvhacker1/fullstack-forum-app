@@ -4,12 +4,21 @@ import type { TopicWithDetails } from '@/lib/types/topics'
 
 const getTopicsByCategory = async (categoryId: string): Promise<TopicWithDetails[]> => {
   const supabase = await createServerSupabaseClient()
-  const { data, error } = await supabase
+  const { data, error } = await (supabase as any)
     .from('topics')
     .select(`
-        *,
-        profiles (username, avatar_url),
-        categories (name, slug)`)
+        id,
+        title,
+        slug,
+        content,
+        category_id,
+        user_id,
+        image_url,
+        created_at,
+        updated_at,
+        profiles!inner (username, avatar_url),
+        categories (name, slug)
+        `)
         .eq('category_id', categoryId)
         .order('created_at', { ascending: false })
 
