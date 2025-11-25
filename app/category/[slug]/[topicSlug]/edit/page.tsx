@@ -1,3 +1,4 @@
+'use client'
 import Button from "@/components/common/Button";
 import ErrorMessage from "@/components/common/ErrorMessage";
 import Input from "@/components/common/Input";
