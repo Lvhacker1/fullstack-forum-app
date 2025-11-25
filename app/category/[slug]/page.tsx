@@ -30,7 +30,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
     <div className="min-h-screen bg-gray-50">
         <Header user={user} />
         <main className="max-w-7xl mx-auto px-4 py-8">
-            <div>
+            <div className="mb-6">
                 <BackButton fallbackUrl={ROUTES.HOME} />
             </div>
             <div className="flex justify-between items-center mb-6">

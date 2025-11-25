@@ -10,6 +10,7 @@ import { Link } from 'lucide-react'
 import { ROUTES } from '@/lib/constants/routes'
 import CommentForm from '@/components/comments/CommentForm'
 import TopicActions from '@/components/topics/TopicAction'
+import BackButton from '@/components/common/BackButton'
 
 interface TopicPageProps {
     params: {
@@ -36,6 +37,9 @@ const TopicPage = async ({ params }: TopicPageProps) => {
     <div className="min-h-screen bg-gray-50">
         <Header user={user} />
         <main className="max-w-4xl mx-auto px-4 py-8">
+            <div className="mb-6">
+                <BackButton fallbackUrl={ROUTES.HOME} />
+            </div>
             <article className="bg-white p-8 rounded-lg shadow">
                 <h1 className="text-3xl font-bold mb-4">{topic.title}</h1>
                 {isOwner && (
