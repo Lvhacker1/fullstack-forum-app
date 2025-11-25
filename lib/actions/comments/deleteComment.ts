@@ -13,7 +13,7 @@ const deleteComment = async (commentId: string, categorySlug: string, topicSlug:
 
     const { data: comment, error: fetchError } = await (supabase as any)
     .from('comments')
-    .select('user_id')
+    .select(`user_id, topics!inner (user_id)`)
     .eq('id', commentId)
     .single()
 
@@ -21,7 +21,10 @@ const deleteComment = async (commentId: string, categorySlug: string, topicSlug:
         return { error: 'Comment not found' }
     }
 
-    if (comment.user_id !== user.id) {
+    const isCommentOwner = comment.user_id === user.id
+    const isTopicOwner = comment.topics.user_id === user.id
+
+    if (!isCommentOwner && !isTopicOwner) {
         return { error: 'Unauthorized' }
     }
 
