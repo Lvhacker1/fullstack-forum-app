@@ -6,7 +6,7 @@ export const GET = async (
     { params }: { params: { slug: string } }
 ) => {
     try {
-        const { slug } = params
+        const { slug } = await params
         const category = await getCategoryBySlug(slug)
         if (!category) {
             return NextResponse.json(
