@@ -10,5 +10,4 @@ export const headerText: HeaderText = {
   welcomeMessage: 'Welcome',
   logOutText: 'Log Out',
   searchText: 'Search',
-  searchLink: ROUTES.SEARCH,
 }
