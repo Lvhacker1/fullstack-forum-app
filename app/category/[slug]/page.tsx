@@ -4,9 +4,10 @@ import getCategoryBySlug from '@/lib/actions/categories/getCategoryBySlug'
 import getTopicsByCategory from '@/lib/actions/topics/getTopicsByCategory'
 import getCurrentUser from '@/lib/actions/auth/getCurrentUser'
 import Header from '@/components/layout/Header'
-import { categoryPage } from '@/lib/data/categoryPage' 
 import BackButton from '@/components/common/BackButton'
 import { ROUTES } from '@/lib/constants/routes'
+import CategoryTopics from '@/components/categories/CategoryTopics'
+import { categoryTopicsText } from '@/lib/data/categoryTopicsText'
 
 interface CategoryPageProps {
     params: {slug: string}
@@ -43,31 +44,15 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
                 {user && (
                     <Link className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                     href={`/category/${slug}/new`}>
-                        {categoryPage.newTopicButton}
+                        {categoryTopicsText.newTopicButton}
                     </Link>
                 )}
             </div>
-
-            {topics.length === 0 ? (
-                <div className="text-center py-12">
-                    <p className="text-gray-700">{categoryPage.noTopicsMessage}</p>
-                </div>
-            ) : (
-                <div className="space-y-4">
-                    {topics.map((topic) => (
-                        <Link className="block p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
-                            key={topic.id}
-                            href={`/category/${slug}/${topic.slug}`}>
-                            <h2 className="text-xl font-bold mb-2">{topic.title}</h2>
-                            <div className="flex items-center gap-4 text-sm text-gray-600">
-                                <span>{categoryPage.byText} {topic.profiles.username}</span>
-                                <span>•</span>
-                                <span>{new Date(topic.created_at).toLocaleDateString()}</span>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            )}
+            <CategoryTopics
+                categorySlug={slug}
+                categoryId={category.id}
+                initialTopics={topics}
+            />
         </main>
     </div>
   )
