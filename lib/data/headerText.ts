@@ -8,5 +8,7 @@ export const headerText: HeaderText = {
   registerText: 'Register',
   registerLink: ROUTES.REGISTER,
   welcomeMessage: 'Welcome',
-  logOutText: 'Log Out'
+  logOutText: 'Log Out',
+  searchText: 'Search',
+  searchLink: ROUTES.SEARCH,
 }
