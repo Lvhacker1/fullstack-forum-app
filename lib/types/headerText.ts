@@ -6,6 +6,6 @@ export interface HeaderText {
   registerLink: string
   welcomeMessage: string
   logOutText: string
-  searcText: string
+  searchText: string
   searchLink: string
 }
