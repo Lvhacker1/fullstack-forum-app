@@ -2,7 +2,7 @@
 import createServerSupabaseClient from '@/lib/supabase/server'
 import type { TopicWithDetails } from '@/lib/types/topics'
 
-const searchTopics = async (query: string): Promise<TopicWithDetails[]> => {
+const searchTopics = async (query: string, categoryId: string): Promise<TopicWithDetails[]> => {
     if (!query || query.trim().length === 0) {
         return []
   }
@@ -29,6 +29,7 @@ const searchTopics = async (query: string): Promise<TopicWithDetails[]> => {
             slug
         )
         `)
+        .eq('category_id', categoryId)
         .ilike('title', `%${query}%`)
         .order('created_at', { ascending: false })
 
