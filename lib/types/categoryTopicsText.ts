@@ -4,4 +4,5 @@ export interface CategoryTopicsText {
     byText: string
     searchResultsFor: string
     noSearchResults: string
+    loadingText: string
 }

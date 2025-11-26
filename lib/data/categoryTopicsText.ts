@@ -6,4 +6,5 @@ export const categoryTopicsText: CategoryTopicsText = {
     byText: 'By',
     searchResultsFor: 'Results for',
     noSearchResults: 'No topics found',
+    loadingText: 'Searching...',
 }
