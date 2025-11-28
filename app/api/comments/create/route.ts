@@ -11,7 +11,7 @@ export const POST = async (request: NextRequest) => {
         }
 
         const body = await request.json()
-        const { content, topic_id } = body
+        const { content, topic_id, parent_id } = body
 
         if (!content || !topic_id) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
@@ -20,7 +20,8 @@ export const POST = async (request: NextRequest) => {
         const commentData = {
             content,
             topic_id,
-            user_id: user.id
+            user_id: user.id,
+            parent_id: parent_id || null
         }
 
         const { data, error } = await (supabase as any)
