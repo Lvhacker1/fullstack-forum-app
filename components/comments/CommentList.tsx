@@ -8,9 +8,10 @@ interface CommentListProps {
     categorySlug: string
     topicSlug: string
     topicOwnerId: string 
+    topicId: string
 }
 
-const CommentList = ({ comments, currentUserId, categorySlug, topicSlug, topicOwnerId }: CommentListProps) => {
+const CommentList = ({ comments, currentUserId, categorySlug, topicSlug, topicOwnerId, topicId }: CommentListProps) => {
     if (comments.length === 0) {
         return (
             <div className="text-center py-8 text-gray-800">
@@ -28,7 +29,8 @@ const CommentList = ({ comments, currentUserId, categorySlug, topicSlug, topicOw
             currentUserId={currentUserId}
             categorySlug={categorySlug}
             topicSlug={topicSlug}
-            topicOwnerId={topicOwnerId} />
+            topicOwnerId={topicOwnerId}
+            topicId={topicId} />
         ))}
     </div>
   )
