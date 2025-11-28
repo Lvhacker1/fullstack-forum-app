@@ -12,7 +12,7 @@ interface CommentFormProps {
     onCancel?: () => void
 }
 
-const CommentForm = ({ topicId, parentId,onCancel }: CommentFormProps) => {
+const CommentForm = ({ topicId, parentId, onCancel }: CommentFormProps) => {
     const router = useRouter()
     const [content, setContent] = useState('')
     const [error, setError] = useState('')
@@ -28,9 +28,9 @@ const CommentForm = ({ topicId, parentId,onCancel }: CommentFormProps) => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                content,
-                topic_id: topicId,
-                parent_id: parentId
+                    content,
+                    topic_id: topicId,
+                    parent_id: parentId
             }),
         })
 
@@ -41,11 +41,13 @@ const CommentForm = ({ topicId, parentId,onCancel }: CommentFormProps) => {
             setLoading(false)
             return
         }
+
         setContent('')
         setLoading(false)
+        if (onCancel) {
+            onCancel()
+        }
         router.refresh()
-        if (onCancel) onCancel()
-            router.refresh()
         } catch (err) {
         setError('Something went wrong')
         setLoading(false)
@@ -61,6 +63,7 @@ const CommentForm = ({ topicId, parentId,onCancel }: CommentFormProps) => {
         placeholder={parentId ? commentFormText.replyPlaceholder : commentFormText.commentPlaceholder}
         rows={parentId ? 2 :4}
         required/>
+        <div>
         <Button type="submit" disabled={loading}>
             {commentFormText.submitButton}
         </Button>
@@ -69,6 +72,7 @@ const CommentForm = ({ topicId, parentId,onCancel }: CommentFormProps) => {
                 {commentFormText.cancelButton}
             </Button>
         )}
+        </div>
     </form>
   )
 }

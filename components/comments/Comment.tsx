@@ -46,7 +46,7 @@ const Comment = ({ comment, currentUserId, categorySlug, topicSlug, topicOwnerId
             <p className="text-gray-800 whitespace-pre-wrap">{comment.content}</p>
             {showReplyForm && (
                 <div>
-                    <CommentForm topicId={topicId} onCancel={() => setShowReplyForm} parentId={comment.id} />
+                    <CommentForm topicId={topicId} onCancel={() => setShowReplyForm(false)} parentId={comment.id} />
                 </div>
             )}
         </div>
