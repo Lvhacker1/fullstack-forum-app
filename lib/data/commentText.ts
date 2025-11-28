@@ -7,6 +7,9 @@ export const commentListText: CommentListText = {
 export const commentFormText: CommentFormText = {
     commentPlaceholder: 'Write a comment...',
     submitButton: 'Post Comment',
+    replyPlaceholder: 'Write a reply...',
+    replyButton: 'Reply',
+    cancelButton: 'Cancel',
 }
 
 export const commentSectionText: CommentSectionText = {
@@ -17,4 +20,5 @@ export const commentSectionText: CommentSectionText = {
 export const commentActionsText: CommentActionsText = {
     deleteButton: 'Delete',
     deleteConfirm: 'Are you sure you want to delete this comment?',
+    replyButton: 'Reply',
 }

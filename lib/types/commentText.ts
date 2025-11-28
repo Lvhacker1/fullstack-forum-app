@@ -5,6 +5,9 @@ export interface CommentListText {
 export interface CommentFormText {
     commentPlaceholder: string
     submitButton: string
+    replyPlaceholder: string
+    replyButton: string
+    cancelButton: string
 }
 
 export interface CommentSectionText {
@@ -15,4 +18,5 @@ export interface CommentSectionText {
 export interface CommentActionsText {
     deleteButton: string
     deleteConfirm: string
+    replyButton: string
 }
