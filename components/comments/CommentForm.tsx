@@ -8,9 +8,11 @@ import { commentFormText } from '@/lib/data/commentText'
 
 interface CommentFormProps {
     topicId: string
+    parentId?: string
+    onCancel?: () => void
 }
 
-const CommentForm = ({ topicId }: CommentFormProps) => {
+const CommentForm = ({ topicId, parentId,onCancel }: CommentFormProps) => {
     const router = useRouter()
     const [content, setContent] = useState('')
     const [error, setError] = useState('')
@@ -28,6 +30,7 @@ const CommentForm = ({ topicId }: CommentFormProps) => {
                 body: JSON.stringify({
                 content,
                 topic_id: topicId,
+                parent_id: parentId
             }),
         })
 
@@ -41,6 +44,8 @@ const CommentForm = ({ topicId }: CommentFormProps) => {
         setContent('')
         setLoading(false)
         router.refresh()
+        if (onCancel) onCancel()
+            router.refresh()
         } catch (err) {
         setError('Something went wrong')
         setLoading(false)
@@ -53,12 +58,17 @@ const CommentForm = ({ topicId }: CommentFormProps) => {
         <Textarea
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        placeholder={commentFormText.commentPlaceholder}
-        rows={4}
+        placeholder={parentId ? commentFormText.replyPlaceholder : commentFormText.commentPlaceholder}
+        rows={parentId ? 2 :4}
         required/>
         <Button type="submit" disabled={loading}>
             {commentFormText.submitButton}
         </Button>
+        {onCancel && (
+            <Button type="button" variant="secondary" onClick={onCancel} disabled={loading}>
+                {commentFormText.cancelButton}
+            </Button>
+        )}
     </form>
   )
 }
