@@ -30,7 +30,7 @@ const Comment = ({ comment, currentUserId, categorySlug, topicSlug, topicOwnerId
                 <div className="flex items-center gap-2 text-sm text-black mb-2">
                     <span className="font-semibold">{comment.profiles.username}</span>
                     <span>•</span>
-                    <span>{new Date(comment.created_at).toLocaleDateString()}</span>
+                    <span>{new Date(comment.created_at).toISOString().split('T')[0]}</span>
                 </div>
                 <div className="flex gap-2">
                     {canReply && (
