@@ -1,12 +1,13 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { use } from 'react'
-import { notFound, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Input from '@/components/common/Input'
 import Textarea from '@/components/common/Textarea'
 import Button from '@/components/common/Button'
 import ErrorMessage from '@/components/common/ErrorMessage'
 import { createTopicPageText } from '@/lib/data/createTopicPage'
+import ImageUpload from '@/components/images/ImageUpload'
 
 interface NewTopicPageProps {
     params: Promise<{slug: string}>
@@ -20,6 +21,7 @@ const NewTopicPage = ({ params }: NewTopicPageProps) => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const [categoryName, setCategoryName] = useState('')
+    const [imageUrl, setImageUrl] = useState('')
 
     useEffect(() => {
         const fetchCategory = async () => {
@@ -45,6 +47,7 @@ const NewTopicPage = ({ params }: NewTopicPageProps) => {
                     title,
                     content,
                     categorySlug: slug,
+                    image_url: imageUrl || null,
             }),
         })
 
@@ -94,6 +97,7 @@ const NewTopicPage = ({ params }: NewTopicPageProps) => {
                     rows={10}
                     required/>
                 </div>
+                <ImageUpload onUpload={setImageUrl} />
                 <Button type="submit" disabled={loading} className="w-full">
                     {loading ? createTopicPageText.loading : createTopicPageText.submitButton}
                 </Button>
