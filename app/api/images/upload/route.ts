@@ -19,20 +19,28 @@ export const POST = async (request: NextRequest) => {
 
         const fileExt = file.name.split('.').pop()
         const fileName = `${user.id}-${Date.now()}.${fileExt}`
+        const arrayBuffer = await file.arrayBuffer()
+        const buffer = new Uint8Array(arrayBuffer)
         const { error } = await supabase.storage
-        .from('topic_images')
-        .upload(fileName, file)
+        .from('topic-images')
+        .upload(fileName, buffer, {
+            contentType: file.type,
+        })
 
         if (error) {
+            console.error('Storage upload error:', error)
             return NextResponse.json({ error: error.message }, { status: 500 })
         }
 
         const { data: urlData } = supabase.storage
-        .from('topic_images')
+        .from('topic-images')
         .getPublicUrl(fileName)
+
+        console.log('Upload success:', urlData.publicUrl)
 
         return NextResponse.json({ url: urlData.publicUrl }, { status: 200 })
     } catch (error) {
+        console.error('Upload error:', error)
         return NextResponse.json({ error: 'Upload failed' }, { status: 500 })
     }
 }
