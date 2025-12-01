@@ -5,4 +5,5 @@ export interface CategoryTopicsText {
     searchResultsFor: string
     noSearchResults: string
     loadingText: string
+    discussText: string
 }

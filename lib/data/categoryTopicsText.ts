@@ -7,4 +7,5 @@ export const categoryTopicsText: CategoryTopicsText = {
     searchResultsFor: 'Results for',
     noSearchResults: 'No topics found',
     loadingText: 'Searching...',
+    discussText: 'Discuss this topic',
 }
