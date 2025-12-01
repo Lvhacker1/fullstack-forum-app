@@ -11,10 +11,10 @@ const HomePage = async () => {
   ])
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-900 text-slate-200">
       <Header user={user} />
       <main className="max-w-7xl mx-auto p-4">
-        <h1 className="text-3xl font-bold mb-6">{homePageText.categoriesHeading}</h1>
+        <h1 className="text-3xl font-bold mb-6 text-white">{homePageText.categoriesHeading}</h1>
         <CategoryList categories={categories} />
       </main>
     </div>
