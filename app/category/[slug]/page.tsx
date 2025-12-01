@@ -35,11 +35,11 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
             <div className="mb-6">
                 <BackButton fallbackUrl={ROUTES.HOME} />
             </div>
-            <div className="flex justify-between items-center mb-6">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 pb-8 border-b border-slate-800">
                 <div>
-                    <h1 className="text-3xl font-bold">{category.name}</h1>
+                    <h1 className="text-3xl font-bold text-white">{category.name}</h1>
                     {category.description && (
-                        <p className="text-gray-700 mt-2">{category.description}</p>
+                        <p className="text-slate-400 mt-2 text-lg">{category.description}</p>
                     )}
                 </div>
                 {user && (
