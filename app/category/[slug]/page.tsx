@@ -26,6 +26,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
     }
 
     const topics = await getTopicsByCategory(category.id)
+    const primaryButtonStyle =  'inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-[0.98] bg-transparent text-blue-400 border border-blue-900 hover:border-blue-500 focus:ring-blue-900 shadow-[0_0_10px_rgba(59,130,246,0.1)]'
 
   return (
     <div className="min-h-screen">
@@ -42,7 +43,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
                     )}
                 </div>
                 {user && (
-                    <Link className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                    <Link className={primaryButtonStyle}
                     href={`/category/${slug}/new`}>
                         {categoryTopicsText.newTopicButton}
                     </Link>
