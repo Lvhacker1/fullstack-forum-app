@@ -26,32 +26,30 @@ const Header = ({ user }: HeaderProps) => {
   
 
   return (
-    <header className="bg-white shadow">
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex justify-between items-center">
-          <Link href={ROUTES.HOME} className="text-2xl font-bold">
+    <header className="sticky top-0 z-50 w-full bg-slate-900 border-b border-slate-800 shadow-md">
+      <div className="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+          <Link href={ROUTES.HOME} className="text-2xl font-bold text-white">
             {headerText.title}
           </Link>
-          <button className="md:hidden"
-            onClick={() => setIsOpen(!isOpen)}>
+          <Button variant="icon" className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-          <div className="hidden md:flex gap-4">
+          </Button>
+          <div className="hidden md:flex items-center gap-4">
             {user ? (
               <>
-                <p className="text-gray-700">{headerText.welcomeMessage}, {user.username || user.email}</p>
-                <Button variant="danger" onClick={handleLogout}>{headerText.logOutText}</Button>
+                <p className="text-slate-300 font-medium text-sm">{headerText.welcomeMessage}, {user.username || user.email}</p>
+                <Button variant="danger" onClick={handleLogout} className="text-sm py-1.5">{headerText.logOutText}</Button>
               </>
             ) : (
               <>
                 <Link 
                   href={headerText.loginLink}
-                  className="px-4 py-2 text-blue-600 hover:text-blue-700">
+                  className="px-4 py-2 text-slate-300 hover:text-white font-medium transition-colors">
                   {headerText.loginText}
                 </Link>
                 <Link 
-                  href={headerText.registerLink}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                  href={headerText.registerLink} 
+                  className="inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-[0.98] bg-transparent text-blue-400 border border-blue-900 hover:border-blue-500 focus:ring-blue-900 shadow-[0_0_10px_rgba(59,130,246,0.1)]">
                   {headerText.registerText}
                 </Link>
               </>
@@ -59,23 +57,23 @@ const Header = ({ user }: HeaderProps) => {
           </div>
         </div>
         {isOpen && (
-          <div className="md:hidden mt-4 flex flex-col gap-2">
+          <div className="md:hidden border-t border-slate-800 bg-slate-900 p-4 flex flex-col gap-4 shadow-xl animate-in slide-in-from-top-2 duration-500">
             {user ? (
               <>
-              <p className="text-gray-700">{headerText.welcomeMessage}, {user.username || user.email}</p>
+              <p className="text-slate-300 font-medium text-center">{headerText.welcomeMessage}, {user.username || user.email}</p>
               <Button variant="danger" onClick={handleLogout}>{headerText.logOutText}</Button>
               </>
             ) : (
               <>
                 <Link 
                   href={headerText.loginLink}
-                  className="px-4 py-2 text-blue-600 hover:text-blue-700 text-center"
+                  className="block w-full px-4 py-2 text-slate-400 hover:text-white rounded-lg text-center transition-colors font-medium"
                   onClick={() => setIsOpen(false)}>
                   {headerText.loginText}
                 </Link>
                 <Link 
                   href={headerText.registerLink}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-center"
+                  className="w-full inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-[0.98] bg-transparent text-blue-400 border border-blue-900 hover:border-blue-500 focus:ring-blue-900 shadow-[0_0_10px_rgba(59,130,246,0.1)]"
                   onClick={() => setIsOpen(false)}>
                   {headerText.registerText}
                 </Link>
@@ -83,7 +81,6 @@ const Header = ({ user }: HeaderProps) => {
             )}
           </div>
         )}
-      </div>
     </header>
   )
 }
