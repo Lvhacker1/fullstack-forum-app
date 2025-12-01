@@ -28,7 +28,7 @@ const CategoryPage = async ({ params }: CategoryPageProps) => {
     const topics = await getTopicsByCategory(category.id)
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
         <Header user={user} />
         <main className="max-w-7xl mx-auto px-4 py-8">
             <div className="mb-6">
