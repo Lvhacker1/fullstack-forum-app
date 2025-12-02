@@ -27,13 +27,15 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 text-gray-900 p-2">
-      <div className="max-w-md w-full bg-white p-8 rounded-md shadow-[0px_2px_4px_2px_rgba(0,0,0,0.1)]">
-        <h1 className="text-2xl font-bold mb-6 text-center">{loginText.title}</h1>
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl">
+        <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold mb-2 text-white">{loginText.title}</h1>
+        </div>
         {error && <ErrorMessage message={error} />}
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium mb-1">{loginText.emailLabel}</label>
+            <label className="block text-sm font-medium mb-1 text-slate-300 ">{loginText.emailLabel}</label>
             <Input
               placeholder={loginText.emailPlaceholder}
               type="email"
@@ -42,7 +44,7 @@ const LoginPage = () => {
               required/>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">{loginText.passwordLabel}</label>
+            <label className="block text-sm font-medium mb-1 text-slate-300 ">{loginText.passwordLabel}</label>
             <Input
               placeholder={loginText.passwordPlaceholder}
               type="password"
@@ -54,9 +56,9 @@ const LoginPage = () => {
             {loading ? loginText.loading : loginText.submitButton}
           </Button>
         </form>
-        <p className="mt-4 text-center text-sm">
+        <p className="mt-6 text-center text-sm text-slate-400">
           {loginText.alternativeText}{' '}
-          <Link href={loginText.alternativeLink} className="inline-block text-blue-600 hover:underline hover:scale-105 transition-transform duration-200">
+          <Link href={loginText.alternativeLink} className="inline-block text-blue-400 hover:text-blue-300 hover:underline transition-colors">
             {loginText.alternativeLinkText}
           </Link>
         </p>
