@@ -67,40 +67,52 @@ const NewTopicPage = ({ params }: NewTopicPageProps) => {
 }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10">
-        <div className="max-w-3xl mx-auto px-4">
-            <h1 className="text-3xl font-bold mb-6 text-center">{createTopicPageText.heading}</h1>
+    <div className="min-h-screen py-10 px-4">
+        <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold mb-2 text-white">{createTopicPageText.heading}</h1>
             {categoryName && (
-                <p className="text-black mb-6">
-                    {createTopicPageText.inCategory} <span className="font-semibold">{categoryName}</span>
+                <p className="text-slate-400">
+                    {createTopicPageText.inCategory} <span className="font-medium text-blue-400">{categoryName}</span>
                 </p>
             )}
-            {error && <ErrorMessage message={error} />}
-            <form onSubmit={handleSubmit} className="bg-white p-6 rounded-md space-y-4">
-                <div>
-                    <label className="block text-sm font-medium mb-1">
+            </div>
+            {error && (
+                <div className="mb-6">
+                    <ErrorMessage message={error} />
+                </div>
+            )}
+            <form onSubmit={handleSubmit} className="bg-slate-900 p-6 rounded-2xl space-y-6 border border-slate-800 md:p-8 shadow-xl">
+                <div className="space-y-2">
+                    <label className="block text-sm font-medium mb-1 text-slate-300">
                         {createTopicPageText.titleLabel}
                     </label>
                     <Input className="p-2 border rounded-md w-full border-gray-400 bg-gray-50 focus:outline-none focus:border-black focus:bg-white transition placeholder-gray-400"
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    placeholder="blabla"
                     required/>
                 </div>
-                <div>
-                    <label className="block text-sm font-medium mb-1">
+                <div className="space-y-2">
+                    <label className="block text-sm font-medium mb-1 text-slate-300">
                         {createTopicPageText.contentLabel}
                     </label>
                     <Textarea
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     rows={10}
+                    placeholder="blabla"
                     required/>
                 </div>
-                <ImageUpload onUpload={setImageUrl} />
-                <Button type="submit" disabled={loading} className="w-full">
-                    {loading ? createTopicPageText.loading : createTopicPageText.submitButton}
-                </Button>
+                <div className="space-y-2">
+                    <ImageUpload onUpload={setImageUrl} />
+                </div>
+                <div className="pt-2">
+                    <Button type="submit" disabled={loading} className="w-full">
+                        {loading ? createTopicPageText.loading : createTopicPageText.submitButton}
+                    </Button>
+                </div>
             </form>
         </div>
     </div>
