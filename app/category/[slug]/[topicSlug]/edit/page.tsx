@@ -107,11 +107,11 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
                         required/>
                     </div>
                     <div className="flex gap-3 justify-end pt-4">
-                        <Button type="submit" disabled={submitting}>
-                            {submitting ? editTopicPageText.loading : editTopicPageText.submitButton}
-                        </Button>
                         <Button type="button" variant="secondary" onClick={() => router.push(`/category/${slug}/${topicSlug}`)}>
                             {editTopicPageText.cancelButton}
+                        </Button>
+                        <Button type="submit" disabled={submitting}>
+                            {submitting ? editTopicPageText.loading : editTopicPageText.submitButton}
                         </Button>
                     </div>
                 </form>
