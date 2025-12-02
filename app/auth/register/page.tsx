@@ -28,13 +28,15 @@ const RegisterPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 text-gray-900 p-2">
-      <div className="max-w-md w-full bg-white p-8 rounded-md shadow-[0px_2px_4px_2px_rgba(0,0,0,0.1)]">
-        <h1 className="text-2xl font-bold mb-6 text-center">{registerText.title}</h1>
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl">
+        <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold mb-2 text-white">{registerText.title}</h1>
+        </div>
         {error && <ErrorMessage message={error} />}
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium mb-1">{registerText.usernameLabel}</label>
+            <label className="block text-sm font-medium mb-1 text-slate-300 ">{registerText.usernameLabel}</label>
             <Input
               placeholder={registerText.usernamePlaceholder}
               type="text"
@@ -43,7 +45,7 @@ const RegisterPage = () => {
               required/>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">{registerText.emailLabel}</label>
+            <label className="block text-sm font-medium mb-1 text-slate-300 ">{registerText.emailLabel}</label>
             <Input
               placeholder={registerText.emailPlaceholder}
               type="email"
@@ -52,7 +54,7 @@ const RegisterPage = () => {
               required/>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">{registerText.passwordLabel}</label>
+            <label className="block text-sm font-medium mb-1 text-slate-300 ">{registerText.passwordLabel}</label>
             <Input
               placeholder={registerText.passwordPlaceholder}
               type="password"
@@ -65,9 +67,9 @@ const RegisterPage = () => {
             {loading ? registerText.loading : registerText.submitButton}
           </Button>
         </form>
-        <p className="mt-4 text-center text-sm">
+        <p className="mt-6 text-center text-sm text-slate-400">
           {registerText.alternativeText}{' '}
-          <Link href={registerText.alternativeLink} className="inline-block text-blue-600 hover:underline hover:scale-105 transition-transform duration-200">
+          <Link href={registerText.alternativeLink} className="inline-block text-blue-400 hover:text-blue-300 hover:underline transition-colors">
             {registerText.alternativeLinkText}
           </Link>
         </p>
