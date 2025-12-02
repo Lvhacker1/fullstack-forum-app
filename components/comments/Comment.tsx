@@ -24,34 +24,46 @@ const Comment = ({ comment, currentUserId, categorySlug, topicSlug, topicOwnerId
     const canReply = currentUserId && depth < 3
 
     return (
-        <div className={depth > 0 ? 'ml-6 border-l-2 border-gray-200 pl-4' : ''}>
-        <div className="border-l-2 border-gray-400 pl-4 py-3">
-            <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2 text-sm text-black mb-2">
-                    <span className="font-semibold">{comment.profiles.username}</span>
-                    <span>•</span>
-                    <span>{new Date(comment.created_at).toISOString().split('T')[0]}</span>
+        <div className={`${depth > 0 ? 'ml-4 md:ml-8 mt-4' : 'mb-6'} ${depth > 0 ? 'border-l-2 border-slate-800 pl-4' : ''}`}>
+        <div className={`relative p-4 rounded-xl ${depth === 0 ? 'bg-slate-900 border border-slate-800' : 'bg-transparent'}`}>
+            <div className="flex items-start justify-between mb-2 gap-3">
+                <div className="h-8 w-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 font-bold text-xs">
+                    {comment.profiles.username.charAt(0).toUpperCase()}
                 </div>
-                <div className="flex gap-2">
-                    {canReply && (
-                        <Button variant="secondary" onClick={() => setShowReplyForm(!showReplyForm)} className="text-sm px-2 py-1">
-                            {commentActionsText.replyButton}
-                        </Button>
-                    )}
-                    {canDelete && (
-                        <CommentActions commentId={comment.id} categorySlug={categorySlug} topicSlug={topicSlug} />
-                    )}
+                <div className="flex flex-col">
+                    <div className="flex items-center gap-2">
+                        <span className={`text-sm font-semibold ${isTopicOwner && comment.user_id === topicOwnerId ? 'text-blue-400' : 'text-slate-200'}`}>
+                            {comment.profiles.username}
+                        </span>
+                        {comment.user_id === topicOwnerId && (
+                            <span className="text-[10px] bg-blue-500/10 text-blue-400 px-1.5 py-0.5 rounded border border-blue-500/20">
+                                {new Date(comment.created_at).toLocaleDateString()}
+                            </span>
+                        )}
+                    </div>
                 </div>
+                {canDelete && (
+                    <CommentActions commentId={comment.id} categorySlug={categorySlug} topicSlug={topicSlug} />
+                )}
             </div>
-            <p className="text-gray-800 whitespace-pre-wrap">{comment.content}</p>
-            {showReplyForm && (
-                <div>
-                    <CommentForm topicId={topicId} onCancel={() => setShowReplyForm(false)} parentId={comment.id} />
-                </div>
-            )}
+            <div className="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap pl-11">
+                 {comment.content}
+            </div>
+            <div className="flex gap-2 mt-3 pl-11">
+                {canReply && (
+                    <Button variant="secondary" onClick={() => setShowReplyForm(!showReplyForm)} className="text-xs px-3 py-1 h-auto min-h-0">
+                        {commentActionsText.replyButton}
+                    </Button>
+                )}
+            </div>
         </div>
+        {showReplyForm && (
+            <div className="mt-4 ml-11">
+                <CommentForm topicId={topicId} onCancel={() => setShowReplyForm(false)} parentId={comment.id} />
+            </div>
+        )}
         {comment.replies && comment.replies.length > 0 && (
-            <div>
+            <div className="mt-2">
                 {comment.replies.map((reply => (
                     <Comment key={reply.id} comment={reply} currentUserId={currentUserId} topicOwnerId={topicOwnerId} topicId={topicId}  categorySlug={categorySlug} topicSlug={topicSlug} depth={depth + 1}/>
                 )))}
