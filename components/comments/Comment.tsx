@@ -51,17 +51,19 @@ const Comment = ({ comment, currentUserId, categorySlug, topicSlug, topicOwnerId
             </div>
             <div className="flex gap-2 mt-3 pl-11">
                 {canReply && (
-                    <Button variant="secondary" onClick={() => setShowReplyForm(!showReplyForm)} className="text-xs px-3 py-1 h-auto min-h-0">
+                    <Button variant="secondary" onClick={() => setShowReplyForm(!showReplyForm)} className="text-xs px-3 py-1 h-auto min-h-0 bg-transparent border border-slate-700 hover:border-slate-500 text-slate-400">
                         {commentActionsText.replyButton}
                     </Button>
                 )}
             </div>
+            {showReplyForm && (
+                <div className="mt-4 ml-11">
+                    <div>
+                        <CommentForm topicId={topicId} onCancel={() => setShowReplyForm(false)} parentId={comment.id} />
+                    </div>
+                </div>
+            )}
         </div>
-        {showReplyForm && (
-            <div className="mt-4 ml-11">
-                <CommentForm topicId={topicId} onCancel={() => setShowReplyForm(false)} parentId={comment.id} />
-            </div>
-        )}
         {comment.replies && comment.replies.length > 0 && (
             <div className="mt-2">
                 {comment.replies.map((reply => (
