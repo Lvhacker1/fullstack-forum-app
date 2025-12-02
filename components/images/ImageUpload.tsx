@@ -2,6 +2,7 @@
 import { useCallback, useState } from 'react'
 import Button from '@/components/common/Button'
 import { imageUploadText } from '@/lib/data/imageUploadText'
+import Cropper from 'react-easy-crop'
 
 interface ImageUploadProps {
     onUpload: (url: string) => void
@@ -177,6 +178,53 @@ const ImageUpload = ({ onUpload }: ImageUploadProps) => {
             </div>
         )}
         {error && <p className="text-sm text-red-400 mt-2 bg-red-950/20 p-2 rounded border border-red-900/50">{error}</p>}
+        {showCropper && imageSrc && (
+            <div className="fixed inset-0 z-[60] bg-slate-950/95 backdrop-blur-sm flex flex-col items-center justify-center p-4">
+                <div className="w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
+                    <div className="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900">
+                        <h3 className="text-white font-bold flex items-center gap-2">
+                            {imageUploadText.cropTitle}
+                        </h3>
+                        <button onClick={handleCropCancel} className="text-slate-400 hover:text-white transition-colors">
+                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="relative flex-1 bg-black min-h-[300px]">
+                        <Cropper
+                        image={imageSrc}
+                        crop={crop}
+                        zoom={zoom}
+                        aspect={16 / 9}
+                        onCropChange={setCrop}
+                        onCropComplete={onCropComplete}
+                        onZoomChange={setZoom}
+                        showGrid={true}/>
+                    </div>
+                    <div className="p-6 bg-slate-900 border-t border-slate-800 space-y-5">
+                        <div className="space-y-2">
+                            <label className="text-xs font-medium text-slate-400 uppercase tracking-wider">{imageUploadText.zoomLabel}</label>
+                            <input className="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400"
+                            type="range"
+                            min={1}
+                            max={3}
+                            step={0.1}
+                            value={zoom}
+                            onChange={(e) => setZoom(Number(e.target.value))}/>
+                        </div>
+                        <div className="flex gap-3 pt-2">
+                            <Button className="flex-1" type="button" variant="secondary"  onClick={handleCropCancel} disabled={uploading} >
+                                {imageUploadText.cancelButton}
+                            </Button>
+                            <Button className="flex-1" type="button"  variant="primary"  onClick={handleCropConfirm} disabled={uploading}  isLoading={uploading}>
+                                {uploading ? imageUploadText.uploadingButton : imageUploadText.saveButton}
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )}
     </div>
   )
 }
