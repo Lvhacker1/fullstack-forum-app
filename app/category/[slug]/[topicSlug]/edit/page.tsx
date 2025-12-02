@@ -70,30 +70,34 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50">
-                <p>{editTopicPageText.loading}</p>
+            <div className="min-h-screen flex items-center justify-center">
+                <p className="text-blue-400 font-medium animate-pulse">{editTopicPageText.loading}</p>
             </div>
         )
     }
 
     return (
-        <div className="min-h-screen py-8 bg-gray-50">
-            <div className="max-w-3xl mx-auto px-4">
-                <h1 className="text-3xl font-bold mb-6">{editTopicPageText.heading}</h1>
-                {error && <ErrorMessage message={error} />}
-                <form onSubmit={handleSubmit} className="bg-white p-6 rounded-md shadow space-y-4">
-                    <div>
-                        <label className="block text-sm font-medium mb-1">
+        <div className="min-h-screen py-12 px-4">
+            <div className="max-w-3xl mx-auto">
+                <h1 className="text-3xl font-bold mb-8 text-white text-center">{editTopicPageText.heading}</h1>
+                {error && (
+                    <div className="mb-6">
+                        <ErrorMessage message={error} />
+                    </div>
+                )}
+                <form onSubmit={handleSubmit} className="bg-slate-900 p-6 rounded-2xl shadow-xl space-y-6 border border-slate-800 md:p-8">
+                    <div className="space-y-2">
+                        <label className="block text-sm font-medium mb-1 text-slate-300">
                             {editTopicPageText.titleLabel}
                         </label>
-                        <Input
+                        <Input className="bg-slate-900"
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         required/>
                     </div>
-                    <div>
-                        <label className="block text-sm font-medium mb-1">
+                    <div className="space-y-2">
+                        <label className="block text-sm font-medium mb-1 text-slate-300">
                             {editTopicPageText.contentLabel}
                         </label>
                         <Textarea
@@ -102,7 +106,7 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
                         rows={10}
                         required/>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-3 justify-end pt-4">
                         <Button type="submit" disabled={submitting}>
                             {submitting ? editTopicPageText.loading : editTopicPageText.submitButton}
                         </Button>
