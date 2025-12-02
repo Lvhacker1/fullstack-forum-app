@@ -12,7 +12,7 @@ const Input = ({ className = '', error = false, ...props }: InputProps) => {
         disabled:opacity-50 disabled:cursor-not-allowed
         ${error 
           ? 'border-red-900 focus:border-red-500 focus:ring-red-500' 
-          : 'border-slate-800 focus:border-slate-600 focus:ring-blue-500'
+          : 'border-slate-800 focus:border-blue-500 focus:ring-blue-500 hover:border-slate-600'
         }
         ${className}
       `}
