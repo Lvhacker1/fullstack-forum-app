@@ -14,7 +14,7 @@ interface CommentListProps {
 const CommentList = ({ comments, currentUserId, categorySlug, topicSlug, topicOwnerId, topicId }: CommentListProps) => {
     if (comments.length === 0) {
         return (
-            <div className="text-center py-12 border border-dashed border-slate-800 rounded-xl">
+            <div className="text-center py-12 border border-dashed border-slate-800 rounded-xl bg-slate-900/20">
                 <p className="text-slate-500 font-medium">
                     {commentListText.noCommentsYet}
                 </p>
