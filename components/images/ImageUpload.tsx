@@ -179,7 +179,7 @@ const ImageUpload = ({ onUpload }: ImageUploadProps) => {
         )}
         {error && <p className="text-sm text-red-400 mt-2 bg-red-950/20 p-2 rounded border border-red-900/50">{error}</p>}
         {showCropper && imageSrc && (
-            <div className="fixed inset-0 z-[60] bg-slate-950/95 backdrop-blur-sm flex flex-col items-center justify-center p-4">
+            <div className="fixed inset-0 z-60 bg-slate-950/95 backdrop-blur-sm flex flex-col items-center justify-center p-4">
                 <div className="w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
                     <div className="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900">
                         <h3 className="text-white font-bold flex items-center gap-2">
