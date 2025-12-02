@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation'
 import deleteComment from '@/lib/actions/comments/deleteComment'
 import { commentActionsText } from '@/lib/data/commentText'
 import Button from '@/components/common/Button'
+import { Trash2 } from 'lucide-react'
 
 interface CommentActionsProps {
   commentId: string
@@ -24,8 +25,8 @@ const CommentActions = ({commentId, categorySlug, topicSlug}: CommentActionsProp
     }
 
   return (
-    <Button variant="danger" onClick={handleDelete} className="text-sm px-2 py-1">
-        {commentActionsText.deleteButton}
+    <Button variant="danger" onClick={handleDelete} className="text-sm px-2 py-1 h-auto min-h-0 border-transparent hover:border-red-900 opacity-60 hover:opacity-100 transition-all" title={commentActionsText.deleteButton}>
+      <Trash2 size={14} />
     </Button>
   )
 }
