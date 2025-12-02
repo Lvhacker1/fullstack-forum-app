@@ -91,7 +91,7 @@ const NewTopicPage = ({ params }: NewTopicPageProps) => {
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    placeholder="blabla"
+                    placeholder="What do you want to discuss?"
                     required/>
                 </div>
                 <div className="space-y-2">
@@ -102,7 +102,7 @@ const NewTopicPage = ({ params }: NewTopicPageProps) => {
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     rows={10}
-                    placeholder="blabla"
+                    placeholder="Share your thoughts, opinions, or questions..."
                     required/>
                 </div>
                 <div className="space-y-2">
