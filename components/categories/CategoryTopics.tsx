@@ -83,8 +83,8 @@ const CategoryTopics = ({ categorySlug, categoryId, initialTopics }: CategoryTop
                             {topic.title}
                         </h2>
                         {topic.image_url && (
-                            <div className="md:hidden mt-3 mb-3 rounded-lg overflow-hidden border border-slate-800 relative h-48">
-                                <Image src={topic.image_url} alt={topic.title} className="object-cover" fill  />
+                            <div className="md:hidden mt-3 mb-3 rounded-lg overflow-hidden border border-slate-800 relative w-full aspect-video">
+                                <Image src={topic.image_url} alt={topic.title} className="object-cover group-hover:scale-105 transition-transform duration-500"  fill sizes="(max-width: 768px) 100vw, 33vw" />
                             </div>
                         )}
                         <div className="flex items-center gap-4 text-xs font-medium text-slate-500 mt-2">
@@ -98,8 +98,8 @@ const CategoryTopics = ({ categorySlug, categoryId, initialTopics }: CategoryTop
                         </div>
                         <div className="hidden md:flex items-center gap-5 md:pl-5 md:border-l border-slate-800/50 shrink-0">
                             {topic.image_url && (
-                                <div className="h-16 w-24 rounded-lg border border-slate-800 bg-slate-900/50 overflow-hidden shrink-0 group-hover:border-blue-500/30 transition-colors relative">
-                                    <Image src={topic.image_url} alt={topic.title} fill className="object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
+                                <div className="w-32 rounded-lg border border-slate-800 bg-slate-900/50 overflow-hidden shrink-0 group-hover:border-blue-500/30 transition-colors relative aspect-video">
+                                    <Image src={topic.image_url} alt={topic.title} fill className="object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-opacity" sizes='128px' />
                                 </div>
                             )}
                             <svg className="w-5 h-5 text-slate-600 group-hover:text-blue-400 group-hover:translate-x-1 transition-all transform shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
