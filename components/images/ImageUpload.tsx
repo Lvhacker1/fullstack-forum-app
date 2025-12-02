@@ -164,9 +164,9 @@ const ImageUpload = ({ onUpload }: ImageUploadProps) => {
                             </svg>
                         </div>
                         <p className="mb-1 text-sm text-slate-400 group-hover:text-slate-200 transition-colors">
-                            <span className="font-semibold">blablabla</span>
+                            <span className="font-semibold">{imageUploadText.clickToSelect}</span>
                         </p>
-                        <p className="text-xs text-slate-600 group-hover:text-slate-500">hahaqhsljlsk</p>
+                        <p className="text-xs text-slate-600 group-hover:text-slate-500">{imageUploadText.fileTypes}</p>
                     </div>
                     <input
                         type="file"
