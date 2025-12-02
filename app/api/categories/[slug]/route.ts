@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import getCategoryBySlug from '@/lib/actions/categories/getCategoryBySlug'
 
 export const GET = async (
-    request: NextRequest,
-    { params }: { params: { slug: string } }
+    _request: NextRequest,
+    context: { params: Promise<{ slug: string }> }
 ) => {
     try {
-        const { slug } = await params
+        const { slug } = await context.params
         const category = await getCategoryBySlug(slug)
         if (!category) {
             return NextResponse.json(

@@ -3,7 +3,7 @@ import getTopicBySlug from '@/lib/actions/topics/getTopicBySlug'
 import getCurrentUser from '@/lib/actions/auth/getCurrentUser'
 
 export const GET = async (
-    request: NextRequest,
+    _request: NextRequest,
     { params }: { params: Promise<{ categorySlug: string; topicSlug: string }> }
 ) => {
     try {
