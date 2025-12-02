@@ -19,4 +19,5 @@ export interface CommentActionsText {
     deleteButton: string
     deleteConfirm: string
     replyButton: string
+    cancelButton: string
 }

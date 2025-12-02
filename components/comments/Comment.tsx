@@ -52,15 +52,13 @@ const Comment = ({ comment, currentUserId, categorySlug, topicSlug, topicOwnerId
             <div className="flex gap-2 mt-3 pl-11">
                 {canReply && (
                     <Button variant="secondary" onClick={() => setShowReplyForm(!showReplyForm)} className="text-xs px-3 py-1 h-auto min-h-0 bg-transparent border border-slate-700 hover:border-slate-500 text-slate-400">
-                        {commentActionsText.replyButton}
+                        {showReplyForm ? commentActionsText.cancelButton : commentActionsText.replyButton}
                     </Button>
                 )}
             </div>
             {showReplyForm && (
-                <div className="mt-4 ml-11">
-                    <div>
-                        <CommentForm topicId={topicId} onCancel={() => setShowReplyForm(false)} parentId={comment.id} />
-                    </div>
+                <div className="mt-4 pl-11 animate-in fade-in slide-in-from-top-2 duration-200">
+                    <CommentForm topicId={topicId} onCancel={() => setShowReplyForm(false)} parentId={comment.id} />   
                 </div>
             )}
         </div>

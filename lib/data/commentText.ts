@@ -21,4 +21,5 @@ export const commentActionsText: CommentActionsText = {
     deleteButton: 'Delete',
     deleteConfirm: 'Are you sure you want to delete this comment?',
     replyButton: 'Reply',
+    cancelButton: 'Cancel'
 }
