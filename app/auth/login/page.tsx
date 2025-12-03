@@ -52,6 +52,11 @@ const LoginPage = () => {
               onChange={(e) => setPassword(e.target.value)}
               required/>
           </div>
+          <div className="text-right">
+            <Link href="/auth/reset-password" className="inline-block text-blue-400 hover:text-blue-300 hover:underline transition-colors text-sm">
+              {loginText.forgotPassword}
+            </Link>
+          </div>
           <Button type="submit" disabled={loading} className="w-full">
             {loading ? loginText.loading : loginText.submitButton}
           </Button>
