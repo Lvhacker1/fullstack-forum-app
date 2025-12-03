@@ -38,7 +38,7 @@ const TopicPage = async ({ params }: TopicPageProps) => {
         <Header user={user} />
         <main className="max-w-4xl mx-auto px-4 py-8">
             <div className="mb-6">
-                <BackButton fallbackUrl={ROUTES.HOME} />
+                <BackButton href={`/category/${slug}`} />
             </div>
             <article className="bg-slate-900 rounded-2xl shadow-lg border border-slate-800 mb-10">
                 <div className="p-6 md:p-8">

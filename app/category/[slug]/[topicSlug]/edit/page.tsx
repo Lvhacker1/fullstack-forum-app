@@ -1,4 +1,5 @@
 'use client'
+import BackButton from "@/components/common/BackButton";
 import Button from "@/components/common/Button";
 import ErrorMessage from "@/components/common/ErrorMessage";
 import Input from "@/components/common/Input";
@@ -79,6 +80,7 @@ const EditTopicPage = ({params}: EditTopicPageProps) => {
     return (
         <div className="min-h-screen py-12 px-4">
             <div className="max-w-3xl mx-auto">
+                <BackButton href={`/category/${slug}/${topicSlug}`} />
                 <h1 className="text-3xl font-bold mb-8 text-white text-center">{editTopicPageText.heading}</h1>
                 {error && (
                     <div className="mb-6">

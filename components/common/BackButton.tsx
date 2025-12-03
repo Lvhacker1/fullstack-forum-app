@@ -5,22 +5,18 @@ import { ArrowLeft } from 'lucide-react'
 
 interface BackButtonProps {
     label?: string
-    fallbackUrl?: string
+    href: string
 }
 
-const BackButton = ({ label = 'Back', fallbackUrl }: BackButtonProps) => {
+const BackButton = ({ label = 'Back', href }: BackButtonProps) => {
     const router = useRouter()
 
-    const handleBack = () => {
-        if(window.history.length > 1) {
-            router.back()
-        } else if(fallbackUrl) {
-            router.push(fallbackUrl)
-        }
+    const handleClick = () => {
+            router.push(href)
     }
 
   return (
-    <Button variant="secondary" onClick={handleBack} className="flex items-center gap-2">
+    <Button variant="secondary" onClick={handleClick} className="flex items-center gap-2">
         <ArrowLeft size={20} />
         {label}
     </Button>

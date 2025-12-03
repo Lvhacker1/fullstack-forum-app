@@ -8,6 +8,7 @@ import Button from '@/components/common/Button'
 import ErrorMessage from '@/components/common/ErrorMessage'
 import { createTopicPageText } from '@/lib/data/createTopicPage'
 import ImageUpload from '@/components/images/ImageUpload'
+import BackButton from '@/components/common/BackButton'
 
 interface NewTopicPageProps {
     params: Promise<{slug: string}>
@@ -69,6 +70,7 @@ const NewTopicPage = ({ params }: NewTopicPageProps) => {
   return (
     <div className="min-h-screen py-10 px-4">
         <div className="max-w-2xl mx-auto">
+            <BackButton href={`/category/${slug}`} />
             <div className="text-center mb-8">
             <h1 className="text-3xl font-bold mb-2 text-white">{createTopicPageText.heading}</h1>
             {categoryName && (
