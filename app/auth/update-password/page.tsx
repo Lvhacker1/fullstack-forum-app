@@ -4,11 +4,11 @@ import ErrorMessage from '@/components/common/ErrorMessage'
 import Input from '@/components/common/Input'
 import Button from '@/components/common/Button'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { ROUTES } from '@/lib/constants/routes'
 import createBrowserSupabaseClient from '@/lib/supabase/client'
 
-const UpdatePasswordPage = () => {
+const UpdatePasswordForm = () => {
     const router = useRouter()
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -125,6 +125,19 @@ const UpdatePasswordPage = () => {
                 )}
             </div>
         </div>
+    )
+}
+
+const UpdatePasswordPage = () => {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center bg-slate-950">
+                <div className="text-center">
+                    <p className="text-blue-400 text-lg font-medium animate-pulse">Loading...</p>
+                </div>
+            </div>}>
+            <UpdatePasswordForm />
+        </Suspense>
     )
 }
 
