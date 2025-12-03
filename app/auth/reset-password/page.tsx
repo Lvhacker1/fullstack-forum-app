@@ -71,7 +71,6 @@ const ResetPasswordPage = () => {
         <div className="max-w-md w-full bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl">
             <div className="text-center mb-8">
                 <h1 className="text-2xl md:text-3xl font-bold mb-3 text-white">{resetPasswordPageText.heading}</h1>
-                <p className="text-slate-400 text-sm leading-relaxed">{resetPasswordPageText.description}</p>
             </div>
             {error && <ErrorMessage message={error} />}
             <form onSubmit={handleSubmit} className="space-y-6">
