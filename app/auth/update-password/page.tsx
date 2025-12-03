@@ -3,9 +3,10 @@ import { updatePasswordPageText } from '@/lib/data/updatePasswordText'
 import ErrorMessage from '@/components/common/ErrorMessage'
 import Input from '@/components/common/Input'
 import Button from '@/components/common/Button'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { ROUTES } from '@/lib/constants/routes'
+import createBrowserSupabaseClient from '@/lib/supabase/client'
 
 const UpdatePasswordPage = () => {
     const router = useRouter()
@@ -13,6 +14,30 @@ const UpdatePasswordPage = () => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const [verifying, setVerifying] = useState(true)
+    const searchParams = useSearchParams()
+
+    useEffect(() => {
+        const verifyToken = async () => {
+            const supabase = createBrowserSupabaseClient()
+            const errorParam = searchParams.get('error')
+            if (errorParam) {
+                setError('Link has expired. Please request a new password reset.')
+                setVerifying(false)
+                return
+            }
+
+            const { data: { session } } = await supabase.auth.getSession()
+            
+            if (!session) {
+                setError('Session expired. Please request a new reset link.')
+                setVerifying(false)
+                return
+            }
+            setVerifying(false)
+        }
+        verifyToken()
+    }, [searchParams])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -30,15 +55,13 @@ const UpdatePasswordPage = () => {
         setLoading(true)
 
         try {
-            const response = await fetch('/api/auth/update-password', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ password }),
+            const supabase = createBrowserSupabaseClient()
+            const { error: updateError } = await supabase.auth.updateUser({
+                password: password
             })
-            const data = await response.json()
 
-            if (!response.ok) {
-                setError(data.error || updatePasswordPageText.errorMessage)
+            if (updateError) {
+                setError(updateError.message)
                 setLoading(false)
                 return
             }
@@ -47,6 +70,16 @@ const UpdatePasswordPage = () => {
             setError(updatePasswordPageText.errorMessage)
             setLoading(false)
         }
+    }
+
+    if(verifying) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-slate-950">
+                <div className="text-center">
+                <p className="text-blue-400 text-lg font-medium animate-pulse">Verifying...</p>
+                </div>
+            </div>
+        )
     }
 
     return (
@@ -61,6 +94,7 @@ const UpdatePasswordPage = () => {
                     </p>
                 </div>
                 {error && <ErrorMessage message={error} />}
+                {!error.includes('expired') && !error.includes('Link') && (
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                         <label className="block text-sm font-medium text-slate-300 mb-1.5">
@@ -70,8 +104,7 @@ const UpdatePasswordPage = () => {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        required
-                        placeholder="At least 6 characters"/>
+                        required/>
                     </div>
                     <div>
                         <label className="block text-sm font-medium text-slate-300 mb-1.5">
@@ -81,8 +114,7 @@ const UpdatePasswordPage = () => {
                         type="password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                        placeholder="Repeat password"/>
+                        required/>
                     </div>
                     <div className="pt-2">
                         <Button type="submit" disabled={loading} className="w-full" variant="primary">
@@ -90,6 +122,7 @@ const UpdatePasswordPage = () => {
                         </Button>
                     </div>
                 </form>
+                )}
             </div>
         </div>
     )
