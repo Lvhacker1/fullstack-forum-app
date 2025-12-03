@@ -9,4 +9,5 @@ export interface LoginPageText {
   alternativeText: string
   alternativeLink: string
   alternativeLinkText: string
+  forgotPassword: string
 }

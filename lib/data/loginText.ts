@@ -12,4 +12,5 @@ export const loginText: LoginPageText = {
   alternativeText: "Don't have an account?",
   alternativeLink: ROUTES.REGISTER,
   alternativeLinkText: 'Register',
+  forgotPassword: 'Forgot password?'
 }
